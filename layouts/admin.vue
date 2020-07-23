@@ -110,13 +110,6 @@
 <script>
   export default {
       middleware: 'auth',
-      head () {
-        return {
-          link: [
-            //{ rel: 'stylesheet', href: '/css/dashboard.css' }
-          ]
-        }
-      },
       methods: {
         logout(){
           this.$auth.logout()
