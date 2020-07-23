@@ -16,7 +16,7 @@
     <notifications group="foo" animation-name="v-fade-left" position="top left" />
   </div>
   <div id="wrapper" ref="wrapper" >
-    <!-- Sidebar -->
+
     <div id="sidebar-wrapper">
       <ul class="sidebar-nav">
         <li class="sidebar-brand ">
