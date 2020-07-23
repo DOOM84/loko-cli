@@ -144,7 +144,7 @@
       } catch (err) {
         console.log(err.response);
         if(err.response.status === 404){
-
+          //error({statusCode: 404, message: "Design not found"})
         }
       }
     }
