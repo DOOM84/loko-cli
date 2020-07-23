@@ -12,7 +12,7 @@
       <a href="#" @click.prevent="logout" class="text-white">Выход</a>
     </div>
   </nav>
-  <div class="row" style="position: fixed; z-index: 100000;">
+  <div class="row" style="position: fixed; z-index: 1000000000;">
     <notifications group="foo" animation-name="v-fade-left" position="top left" />
   </div>
   <div id="wrapper" ref="wrapper" >

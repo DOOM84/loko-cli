@@ -158,8 +158,8 @@
   }
 
   .carousel-3d-slide {
-    border: none;
-    background-color: rgba(191, 23, 23, 0);
+    border: none !important;
+    background-color: transparent !important;
   }
 
   /*.carousel-3d-container figcaption {
