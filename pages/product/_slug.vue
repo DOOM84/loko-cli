@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="row pb-5">
       <div class="col-12 py-4">
         <h5 class="text-center">Продукция — {{product.name}}</h5>
@@ -17,6 +17,7 @@
               <tr>
                 <th scope="col">№</th>
                 <th scope="col">Наименование</th>
+                <th scope="col">Изображение</th>
                 <th scope="col">Номер чертежа</th>
                 <th scope="col">Вес (кг)</th>
               </tr>
@@ -25,6 +26,7 @@
               <tr v-for="(detail,i) in product.details">
                 <th scope="row">{{i+1}}</th>
                 <td>{{detail.name}}</td>
+                <td><img v-if="detail.image" :src="detail.image" alt=""></td>
                 <td>{{detail.drawing}}</td>
                 <td>{{detail.weight}}</td>
               </tr>
@@ -32,7 +34,6 @@
             </table>
           </div>
         </div>
-
     </div>
   </div>
   </div>

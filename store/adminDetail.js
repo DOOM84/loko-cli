@@ -18,23 +18,23 @@ export const actions = {
 
     async create({}, data) {
         try {
-            return await this.$axios.$post('admin/detail', data)
+            return await this.$axios.$post('admin/detail', data, {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              },
+            })
         } catch (error) {
             throw error;
         }
     },
 
-  /*async restore({}, data) {
-    try {
-      return await this.$axios.$post('getPass', data)
-    } catch (error) {
-      throw error;
-    }
-  },*/
-
     async update({}, params){
       try {
-            return await this.$axios.$patch(`admin/detail/${params.id}`, params)
+        return await this.$axios.$post(`admin/detail/${params.id}`, params.data, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
         } catch (error) {
             throw error;
         }

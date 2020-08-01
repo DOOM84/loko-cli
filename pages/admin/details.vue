@@ -19,6 +19,7 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Наименование</th>
+            <th scope="col">Изображение</th>
             <th scope="col">Номер чертежа</th>
             <th scope="col">Вес (кг)</th>
             <th scope="col">Опубликовано</th>
@@ -29,6 +30,7 @@
           <tr v-for="(detail, i) in details" :key="detail.id">
             <th scope="row">{{i+1}}</th>
             <td>{{detail.name}}</td>
+            <td><img v-if="detail.image" :src="detail.image" alt=""></td>
             <td>{{detail.drawing}}</td>
             <td>{{detail.weight}}</td>
             <td>{{detail.status ? 'ДА' : 'НЕТ'}}</td>
@@ -56,10 +58,23 @@
         scrollable
       >
         <div class="container">
+
+          <div v-if="detailToUpdate.image" class="text-center">
+            <img class="img-fluid" :src="detailToUpdate.image" alt="">
+          </div>
+
         <div class="form-group">
           <label for="name">Наименование</label>
           <input type="text" v-model="detailToUpdate.name" class="form-control" id="name">
         </div>
+
+          <div class="input-group p-2">
+            <div class="custom-file">
+              <input ref="image" type="file" class="custom-file-input" id="editFile" >
+              <label class="custom-file-label" for="editFile">Выберите изображение </label>
+            </div>
+          </div>
+
         <div class="form-group">
           <label for="drawing">Номер чертежа</label>
           <input type="text" v-model="detailToUpdate.drawing" class="form-control" id="drawing">
@@ -117,6 +132,7 @@
         products: [],
         detailToUpdate: {
           name: '',
+          image: '',
           drawing: '',
           weight: '',
           products: [],
@@ -152,7 +168,17 @@
 
       async createItem() {
         try {
-          const {success, detail} = await this.$store.dispatch('adminDetail/create', this.detailToUpdate);
+
+          let formData = new FormData();
+          let file = this.$refs.image.files[0];
+          if(file){formData.append('image', file)}
+          formData.append('name', this.detailToUpdate.name);
+          formData.append('drawing', this.detailToUpdate.drawing);
+          formData.append('weight', this.detailToUpdate.weight);
+          formData.append('ids', this.detailToUpdate.ids);
+          formData.append('status', this.detailToUpdate.status);
+
+          const {success, detail} = await this.$store.dispatch('adminDetail/create', formData);
           this.details.push(detail);
           this.$modal.hide('conditional-modal');
           this.$notify({
@@ -176,7 +202,17 @@
 
       async updateItem(){
         try {
-          const {success, detail} = await this.$store.dispatch('adminDetail/update', this.detailToUpdate);
+          let formData = new FormData();
+          let upFile = this.$refs.image.files[0];
+          if(upFile){formData.append('image', upFile)}
+          formData.append('name', this.detailToUpdate.name);
+          formData.append('drawing', this.detailToUpdate.drawing);
+          formData.append('weight', this.detailToUpdate.weight);
+          formData.append('ids', this.detailToUpdate.ids);
+          formData.append('status', this.detailToUpdate.status);
+          formData.append('_method', 'PATCH');
+
+          const {success, detail} = await this.$store.dispatch('adminDetail/update', {data: formData, id: this.detailToUpdate.id});
           this.$set(this.details, this.details.findIndex(item => item.id === detail.id), detail);
           this.$modal.hide('conditional-modal');
           this.$notify({
@@ -205,6 +241,7 @@
           email: '',
           weight: '',
           drawing: '',
+          image: '',
           products: [],
           ids: [],
           status: false,

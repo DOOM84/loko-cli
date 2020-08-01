@@ -14,6 +14,7 @@ body {
   /*background: #4f4f4f url(../img/bg.png) scroll 0 0;*/
 }
 
+
 a:hover,
 a:focus,
 .tm-text-gray {
@@ -65,19 +66,61 @@ button:focus {
   padding-bottom: 30px;
 }
 
-.tm-section-3{
-  background: #ecf5ff;
+/*.tm-section-3{
+
+  !*background: no-repeat url(../img/back.png);
+  background-position: bottom 5% right 5%;*!
+
+
+  background: url(../img/back.png) no-repeat scroll center;
+ // background-position: bottom 50% right 20%;
+
+  background-color: #ecf5ff;
   box-shadow: inset 0px 0px 12px 0px rgba(0,0,0,0.1);
+
+}*/
+
+.tm-section-3 {
+
+  background-color: #ecf5ff;
+  /*background-image:  url(../img/back.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  z-index: 1; */
 }
 
 .tm-section-7{
   color: white;
-  background: no-repeat #4f4f4f url(../img/bg.png) fixed 0 0;
+  /*background: no-repeat #4f4f4f url(../img/bg.png) fixed 0 0;
+  background-size: cover;*/
+
+  background-image: url(../img/bg.png);
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  z-index: 1;
 }
 
-.tm-section-2{
 
-  box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.1);
+
+
+/*.tm-section-2{
+  //background: url(../img/info.png) no-repeat scroll;
+  //background-size: cover;
+  background: no-repeat #4f4f4f url(../img/info.jpg) scroll 0 0;
+  background-size: cover;
+
+  box-shadow: inset 0px 0px 12px 0px rgba(0,0,0,0.1);
+
+}*/
+
+.tm-section-2 {
+  background-image: url(../img/info.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  z-index: 1;
 }
 
 .tm-section-5{
@@ -88,13 +131,20 @@ button:focus {
 
 .tm-section-6{
   color: white;
-  background: no-repeat #4f4f4f url(../img/bgc.jpg) scroll 0 0;
+  /*background: no-repeat fixed #4f4f4f url(../img/bgc.jpg);
+  background-size: cover;*/
+
+  background-image: url(../img/bgc.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  z-index: 1;
 }
 
 
 
 #top {
-  padding-top: 65px;
+  //padding-top: 65px;
 }
 
 #info,
@@ -482,6 +532,18 @@ a {
     padding-left: 20px;
   }
 }
+/*
+@media screen and (min-width: 769px) {
+  .navbar {
+    justify-content: center;
+    position: fixed;
+    right: 49%;
+    top: 0;
+    z-index: 1000;
+    flex-direction: column;
+    align-items: end;
+  }
+}*/
 
 @media screen and (max-width: 768px) {
   .navbar {
@@ -569,6 +631,12 @@ a {
 @media (min-width: 1200px) {
   .container {
     max-width: 1310px;
+  }
+}
+
+@media (max-width: 1600px) {
+  .container {
+    max-width: 1000px;
   }
 }
 
